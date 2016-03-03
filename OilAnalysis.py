@@ -62,6 +62,7 @@ os.chdir(result_folder)
 #save all binary images in the result_folder
 for i in range(len(binary_images)):
     image_file = binary_images[i]
-    image_file.save('result' + str(i) + '.png')
+    #image_file.save('result' + str(i) + '.png')
+    image_file.save(filenames[i] + 'BINARY.png')
 
 #######################################################################
