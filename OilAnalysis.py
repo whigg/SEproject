@@ -11,9 +11,9 @@ Dr. Colmaneres
 
 """
 
-#The following section of code opens in image file in the directory of the 
-#script, converts it to binary, and saves the result in the same directory
-#with the name "result".
+#The following section of code opens a folder of image files in the directory 
+#of this python script, converts it to binary, and saves the results in another 
+#directory.
 
 ##  NOTE  ##
 #Depending on how the GUI ends up looking, we could offer a text box for the
@@ -24,14 +24,20 @@ Dr. Colmaneres
 from PIL import Image
 import os
 
+#name for folder in which all resulting binary images will be saved.
+result_folder = 'BinaryImages'
+
+#name for folder in which all original images will be kept.
+images_folder = 'Images'
+
 #list to hold all binary images
 binary_images = []
 
 #getting names of all files in the Images directory
-filenames = os.listdir('Images')
-print(filenames)
+filenames = os.listdir(images_folder)
+
 #changing directory to 'Images" folder
-os.chdir('Images')
+os.chdir(images_folder)
 
 for i in range(len(filenames)):
     #open color image
@@ -43,11 +49,19 @@ for i in range(len(filenames)):
     #adding new binary image to binary_images list
     binary_images.append(image_file)
 
+#backing out of images_folder
+os.chdir("..")
+
+#if the result_folder does not exist, create it
+if not os.path.exists(result_folder):
+    os.makedirs(result_folder)
+
+#change directories to result folder
+os.chdir(result_folder)
+
+#save all binary images in the result_folder
 for i in range(len(binary_images)):
     image_file = binary_images[i]
     image_file.save('result' + str(i) + '.png')
-#image_file.save('result.png')
+
 #######################################################################
-
-#attempting to read all file names in the images directory
-
