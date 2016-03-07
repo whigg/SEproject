@@ -43,8 +43,9 @@ for i in range(len(filenames)):
     #open color image
     image_file = Image.open(filenames[i]) 
 
-    #convert to black and white
-    image_file = image_file.convert('1') 
+    #convert to pure black and white (next two lines)
+    image_file = image_file.convert('L')
+    image_file= image_file.point(lambda x: 0 if x<128 else 255, '1')
 
     #adding new binary image to binary_images list
     binary_images.append(image_file)
