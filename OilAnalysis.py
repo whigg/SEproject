@@ -1,14 +1,10 @@
 # -*- coding: utf-8 -*-
 """
-
 Created on Tue Feb 16 00:16:41 2016
-
 @author: Austin Cullar, Kem Andrew, Taylor Murphy
-
 Software Engineering Project
 Oil Dispersal Analysis
 Dr. Colmaneres
-
 """
 
 #The following section of code opens a folder of image files in the directory 
@@ -33,6 +29,9 @@ images_folder = 'Images'
 #list to hold all binary images
 binary_images = []
 
+#list to hold all file names in the binary images folder
+binaryImageNames = []
+
 #getting names of all files in the Images directory
 filenames = os.listdir(images_folder)
 
@@ -51,7 +50,7 @@ for i in range(len(filenames)):
     binary_images.append(image_file)
 
 #backing out of images_folder
-os.chdir("..")
+os.chdir('..')
 
 #if the result_folder does not exist, create it
 if not os.path.exists(result_folder):
@@ -65,5 +64,24 @@ for i in range(len(binary_images)):
     image_file = binary_images[i]
     #image_file.save('result' + str(i) + '.png')
     image_file.save(filenames[i] + 'BINARY.png')
+    
+os.chdir('..')
+os.chdir('BinaryImages')
+binaryImageNames = os.listdir()
+print(binaryImageNames)
+    
+for i in range(len(binaryImageNames)):
+    
+    im = Image.open(binaryImageNames[i])
 
-#######################################################################
+    PixList = im.getcolors()
+
+    for pixel in PixList:
+        if pixel[1] == 0:
+            print ("Black: ", pixel[0])
+        
+        elif pixel[1] == 255:     
+            print ("White: ", pixel[0])
+    
+        else:
+            print ("Non B/W Pixel detected!!")
