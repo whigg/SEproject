@@ -10,41 +10,47 @@ Created on Wed Mar 02 16:10:15 2016
 
 import sys
 from PyQt4 import QtGui, QtCore
+from PyQt4.QtCore import *
+from PyQt4.QtGui import *
+
+class ImageLabel(QLabel):
+    def __init__(self, image, parent=None):
+        super(ImageLabel, self).__init__(parent)
+        self.setPixmap(image)
+
+    def mousePressEvent(self, event):
+        print 'I was pressed'
 
 class Window(QtGui.QMainWindow):
 
     def __init__(self):
-        #Template for home menu
         super(Window,self).__init__()
+        self.home()
+
+    def home(self):
         #self.resize(250, 150) optional resize method
-        self.setGeometry(600,600,600,600)
+        self.setGeometry(0,0,600,600)
         self.setWindowTitle("P I X E L S")
         self.setWindowIcon(QtGui.QIcon('icon'))
 
-        #self.setWindowFlags(QtCore.Qt.FramelessWindowHint | QtCore.Qt.WindowStaysOnTopHint)
-        #self.setWindowOpacity(.9)
-        #text_widget = text(self)
-        #self.setCentralWidget(text_widget)
-        #self.setStyleSheet("QMainWindow { background: 'grey13'}");
-        #self.setStyleSheet("QMainWindow { padding: 20px}");
+        #name_label = QLabel("Here's a clickable image:")
+        img_label = ImageLabel(QPixmap('logo.png'))
 
-        self.setStyleSheet("QMainWindow{ background-image: url(logo) }")
+        vbox = QHBoxLayout()
+        #vbox.addWidget(name_label)
+        vbox.addWidget(img_label)
+        #vbox.addStretch(1)
 
-        # extractAction = QtGui.QAction("Get to the choppah", self)
-        # extractAction.setShortcut("Ctrl+Q")
-        # extractAction.setStatusTip('Leave the app')
-        # extractAction.triggered.connect(QtCore.QCoreApplication.instance().quit)
-        #
-        # self.stausBar()
-        #
-        # mainMenu = self.menuBar()
-        # fileMenu = mainMenu.addMenu('&File')
-        # fileMenu.addAction(extractAction)
+        vbox2 = QVBoxLayout()
+        vbox.addLayout(vbox2)
 
-        self.home()
-        #self.changebackground()
+        main_frame = QWidget()
+        main_frame.setLayout(vbox)
+        self.setCentralWidget(main_frame)
 
-    def home(self):
+        #self.setStyleSheet("QMainWindow{ background-image: url(logo2) }")
+        #self.setStyleSheet("QMainWindow{ background-color: 'gray10' }")
+
     #Call this function to center the window on user's screen
         self.center()
 
@@ -56,43 +62,36 @@ class Window(QtGui.QMainWindow):
         QtGui.QToolTip.setFont(QtGui.QFont('SansSerif', 10))
         self.setToolTip('Thanks for using <b>PIXELS</b>!')
 
-        logoButton = QtGui.QPushButton(self)
-        logoButton.setStyleSheet("background-color: red")
-        logoButton.move(150, 150)
-
     #ADD IMAGES BUTTON
         addimgButton = QtGui.QPushButton("Add Images", self)
-        #addimgButton.resize(addimgButton.sizeHint)
+        addimgButton.resize(addimgButton.sizeHint())
         addimgButton.move(150, 200)
+        #grid.addWidget(addimgButton, 1,0)
         addimgButton.setToolTip('Click to add your images')
         addimgButton.clicked.connect(self.selectFile)
-
-        #oD=openDirectoryDialog.getExistingDirectory(self,"open","C:/")
+        vbox2.addWidget(addimgButton)
 
     #EXIT BUTTON
         exitButton = QtGui.QPushButton("Exit", self)
         exitButton.setToolTip('Click to <b>EXIT</b> PIXELS')
         exitButton.clicked.connect(QtCore.QCoreApplication.instance().quit)
         exitButton.resize(exitButton.sizeHint())
+        #grid.addWidget(exitButton, 0,1)
         exitButton.move(150,250)
+        vbox2.addWidget(exitButton)
 
     #FRAME RATE
         self.frameRate = QtGui.QPushButton('Frame rate', self)
         self.frameRate.move(150,300)
         self.frameRate.clicked.connect(self.showDialog)     #dialogue box popup
-        self.frameRate.setToolTip('Frame rate')                  #tooltip
+        self.frameRate.setToolTip('Frame rate')
+        vbox2.addWidget(self.frameRate)               #tooltip
 
         self.frateEdit = QtGui.QLineEdit(self)
         self.frateEdit.move(150, 330)
         self.frateEdit.setToolTip('Enter frame rate')
+        vbox2.addWidget(self.frateEdit)
 
-    #LAYOUT
-        # grid = QtGui.QGridLayout()
-        # self.setLayout(grid)
-        # grid.addWidget(logoButton, 0,0)
-        # grid.addWidget(addimgButton, 0,1)
-        # grid.addWidget(exitButton, 0,2)
-        # # grid.addWidget(frameRate, 1,1)
 
         self.show()
 # ------------   END OF Window CLASS    ---------------------------------
@@ -103,7 +102,7 @@ class Window(QtGui.QMainWindow):
     def closeEvent(self, event):
 
         reply = QtGui.QMessageBox.question(self, 'Message',
-            "Are you sure to quit?", QtGui.QMessageBox.Yes |
+            "Are you sure you want to quit?", QtGui.QMessageBox.Yes |
             QtGui.QMessageBox.No, QtGui.QMessageBox.No)
 
         if reply == QtGui.QMessageBox.Yes:
@@ -142,7 +141,7 @@ class Window(QtGui.QMainWindow):
         filename=QFileDialog.getOpenFileName("", "*.py", self, "FileDialog")
 
     def changebackground(self):
-        fname = QtGui.QFileDialog.getOpenFileName(self, 'Select background image', 'C:/Users/Kem/Documents/GitHub/SoftwareEngineering/conversion')
+        fname = QtGui.QFileDialog.getOpenFileName(self, 'Select background image', 'C:/Users/Kem/Documents/GitHub/SoftwareEngineering')
         print fname
         self.results.setStyleSheet("background-image: url(" + fname + "); background-repeat: no-repeat; background-position: center;")
 
