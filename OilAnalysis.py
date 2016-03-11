@@ -68,11 +68,12 @@ for i in range(len(binary_images)):
 os.chdir('..')
 os.chdir('BinaryImages')
 binaryImageNames = os.listdir()
-print(binaryImageNames)
+#print(binaryImageNames)
     
 for i in range(len(binaryImageNames)):
     
     im = Image.open(binaryImageNames[i])
+    print(binaryImageNames[i])
 
     PixList = im.getcolors()
 
