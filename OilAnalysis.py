@@ -17,8 +17,10 @@ Dr. Colmaneres
 #will be stored. This would allow us to avoid the hard-coding of a particular
 #folder name. (Such as 'Images', as I have done below.)
 
+
 from PIL import Image
 import os
+
 
 #name for folder in which all resulting binary images will be saved.
 result_folder = 'BinaryImages'
@@ -31,6 +33,10 @@ binary_images = []
 
 #list to hold all file names in the binary images folder
 binaryImageNames = []
+
+#list to hold touples which hold data for each image
+imageData = []
+
 
 #getting names of all files in the Images directory
 filenames = os.listdir(images_folder)
@@ -68,7 +74,6 @@ for i in range(len(binary_images)):
 os.chdir('..')
 os.chdir('BinaryImages')
 binaryImageNames = os.listdir(os.getcwd())
-#print(binaryImageNames)
     
 for i in range(len(binaryImageNames)):
     
