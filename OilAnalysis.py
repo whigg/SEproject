@@ -67,7 +67,7 @@ for i in range(len(binary_images)):
     
 os.chdir('..')
 os.chdir('BinaryImages')
-binaryImageNames = os.listdir()
+binaryImageNames = os.listdir(os.getcwd())
 #print(binaryImageNames)
     
 for i in range(len(binaryImageNames)):
