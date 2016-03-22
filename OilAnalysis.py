@@ -91,3 +91,4 @@ for i in range(len(binaryImageNames)):
     
         else:
             print ("Non B/W Pixel detected!!")
+
