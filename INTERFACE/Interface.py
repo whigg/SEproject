@@ -24,7 +24,7 @@ class ImageLabel(QLabel):
 class Window(QtGui.QMainWindow):
 
     def __init__(self):
-        super(Window,self).__init__()
+        super(Window,self).__init__() #call init fro the base class
         self.home()
 
     def home(self):
@@ -70,6 +70,7 @@ class Window(QtGui.QMainWindow):
         addimgButton.setToolTip('Click to add your images')
         addimgButton.clicked.connect(self.selectFile)
         vbox2.addWidget(addimgButton)
+        addimgButton.resize(300,300)
 
     #EXIT BUTTON
         exitButton = QtGui.QPushButton("Exit", self)

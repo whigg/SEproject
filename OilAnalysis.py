@@ -7,8 +7,8 @@ Oil Dispersal Analysis
 Dr. Colmaneres
 """
 
-#The following section of code opens a folder of image files in the directory 
-#of this python script, converts it to binary, and saves the results in another 
+#The following section of code opens a folder of image files in the directory
+#of this python script, converts it to binary, and saves the results in another
 #directory.
 
 ##  NOTE  ##
@@ -40,7 +40,7 @@ os.chdir(images_folder)
 
 for i in range(len(filenames)):
     #open color image
-    image_file = Image.open(filenames[i]) 
+    image_file = Image.open(filenames[i])
 
     #convert to pure black and white (next two lines)
     image_file = image_file.convert('L')
@@ -64,25 +64,35 @@ for i in range(len(binary_images)):
     image_file = binary_images[i]
     #image_file.save('result' + str(i) + '.png')
     image_file.save(filenames[i] + 'BINARY.png')
-    
+
 os.chdir('..')
 os.chdir('BinaryImages')
 binaryImageNames = os.listdir()
 #print(binaryImageNames)
-    
-for i in range(len(binaryImageNames)):
-    
+
+import glob, os
+
+size = 128, 128
+
+for infile in glob.glob("*.jpg"):
+    file, ext = os.path.splitext(infile)
     im = Image.open(binaryImageNames[i])
-    print(binaryImageNames[i])
+    im.thumbnail(size, Image.ANTIALIAS)
+    im.save(file + ".thumbnail", "JPEG")
 
-    PixList = im.getcolors()
-
-    for pixel in PixList:
-        if pixel[1] == 0:
-            print ("Black: ", pixel[0])
-        
-        elif pixel[1] == 255:     
-            print ("White: ", pixel[0])
-    
-        else:
-            print ("Non B/W Pixel detected!!")
+# for i in range(len(binaryImageNames)):
+#
+#     im = Image.open(binaryImageNames[i])
+#     print(binaryImageNames[i])
+# 
+#     PixList = im.getcolors()
+#
+#     for pixel in PixList:
+#         if pixel[1] == 0:
+#             print ("Black: ", pixel[0])
+#
+#         elif pixel[1] == 255:
+#             print ("White: ", pixel[0])
+#
+#         else:
+#             print ("Non B/W Pixel detected!!")
