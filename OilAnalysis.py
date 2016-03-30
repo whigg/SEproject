@@ -27,8 +27,7 @@ import numpy as np
 result_folder = 'BinaryImages'
 
 #name for folder in which all original images will be kept.
-images_folder = 'Images'
-#images_folder = 'TestImage'
+images_folder = 'OilFilled'
 
 #list to hold all binary images
 binary_images = []
@@ -116,7 +115,7 @@ binaryImageNames = os.listdir(os.getcwd())
 for i in range(len(binaryImageNames)):
 
     im = Image.open(binaryImageNames[i])
-    #print(binaryImageNames[i])
+    print(binaryImageNames[i])
 
     PixList = im.getcolors()
 
@@ -124,11 +123,11 @@ for i in range(len(binaryImageNames)):
 
         if pixel[1] == 0:
             Bpixels = pixel[0]
-            #print ("Black: ", pixel[0])
+            print ("Black: ", pixel[0])
 
         elif pixel[1] == 255:
             Wpixels = pixel[0]
-            #print ("White: ", pixel[0])
+            print ("White: ", pixel[0])
 
         else:
             print ("Non B/W Pixel detected!!")
@@ -139,16 +138,19 @@ for i in range(len(binaryImageNames)):
 
 
 #x coordinate will be the positions in sequence of each image
-x = range(0,42)
+x = range(0,7)
 
 #y coordinate will be the number of black pixels
 y = [i[1] for i in imageData]
 print(y)
-"""
+
 plt.plot(x, y)
 #plt.axis([0, 25, 800000, 1400000])
 plt.xlabel("Position in Sequence")
 plt.ylabel("Pixels")
 plt.show()
+<<<<<<< HEAD
 """
 >>>>>>> 2f9721f89025c8a7d21efc7d03f6ada319fccb91
+=======
+>>>>>>> c50b02fa599e553b18dd419ba100a06fdb77369a
