@@ -17,20 +17,33 @@ Dr. Colmaneres
 #will be stored. This would allow us to avoid the hard-coding of a particular
 #folder name. (Such as 'Images', as I have done below.)
 
+
 from PIL import Image
 import os
+import matplotlib.pyplot as plt
+import numpy as np
 
 #name for folder in which all resulting binary images will be saved.
 result_folder = 'BinaryImages'
 
 #name for folder in which all original images will be kept.
 images_folder = 'Images'
+#images_folder = 'TestImage'
 
 #list to hold all binary images
 binary_images = []
 
 #list to hold all file names in the binary images folder
 binaryImageNames = []
+
+#list to hold touples which hold data for each image
+imageData = []
+
+#variable to hold number of black pixels
+Bpixels = 0
+
+#variable to hold number of white pixels
+Wpixels = 0
 
 #getting names of all files in the Images directory
 filenames = os.listdir(images_folder)
@@ -67,6 +80,7 @@ for i in range(len(binary_images)):
 
 os.chdir('..')
 os.chdir('BinaryImages')
+<<<<<<< HEAD
 binaryImageNames = os.listdir()
 #print(binaryImageNames)
 
@@ -96,3 +110,45 @@ for infile in glob.glob("*.jpg"):
 #
 #         else:
 #             print ("Non B/W Pixel detected!!")
+=======
+binaryImageNames = os.listdir(os.getcwd())
+
+for i in range(len(binaryImageNames)):
+
+    im = Image.open(binaryImageNames[i])
+    #print(binaryImageNames[i])
+
+    PixList = im.getcolors()
+
+    for pixel in PixList:
+
+        if pixel[1] == 0:
+            Bpixels = pixel[0]
+            #print ("Black: ", pixel[0])
+
+        elif pixel[1] == 255:
+            Wpixels = pixel[0]
+            #print ("White: ", pixel[0])
+
+        else:
+            print ("Non B/W Pixel detected!!")
+
+    imageData.append((binaryImageNames[i], Bpixels, Wpixels))
+###  At this point, imageData contains information about all images in the
+###  specified images file. Now comes the graph construction.
+
+
+#x coordinate will be the positions in sequence of each image
+x = range(0,42)
+
+#y coordinate will be the number of black pixels
+y = [i[1] for i in imageData]
+print(y)
+"""
+plt.plot(x, y)
+#plt.axis([0, 25, 800000, 1400000])
+plt.xlabel("Position in Sequence")
+plt.ylabel("Pixels")
+plt.show()
+"""
+>>>>>>> 2f9721f89025c8a7d21efc7d03f6ada319fccb91
