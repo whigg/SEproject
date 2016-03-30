@@ -13,6 +13,8 @@ from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
 
+
+# This class handles the logo object and functionality
 class ImageLabel(QLabel):
     def __init__(self, image, parent=None):
         super(ImageLabel, self).__init__(parent)
@@ -21,25 +23,33 @@ class ImageLabel(QLabel):
     def mousePressEvent(self, event):
         print 'I was pressed'
 
+# This class handles the main Window of the program.
+# Window contains buttons, tooltips, logo, and each
+# button's functionality
 class Window(QtGui.QMainWindow):
 
     def __init__(self):
-        super(Window,self).__init__() #call init fro the base class
+        super(Window,self).__init__() #call init from the base class
         self.home()
 
     def home(self):
-        #self.resize(250, 150) optional resize method
+        # Creates a window with the following specifications:
+        # Geometry/size:  600x600 PIXELS
+        # Title:          PIXELS
+        # Icon:           sets icon in image folder
         self.setGeometry(0,0,600,600)
         self.setWindowTitle("P I X E L S")
         self.setWindowIcon(QtGui.QIcon('icon'))
 
-        #name_label = QLabel("Here's a clickable image:")
+        # Create a Qt label object with image file
         img_label = ImageLabel(QPixmap('logo.png'))
 
+        # Create Qt box objects
+        # box objects allows you to set different layouts by
+        # saving objects in boxes and setting boxes in different
+        # positions
         vbox = QHBoxLayout()
-        #vbox.addWidget(name_label)
         vbox.addWidget(img_label)
-        #vbox.addStretch(1)
 
         vbox2 = QVBoxLayout()
         vbox.addLayout(vbox2)
@@ -47,9 +57,6 @@ class Window(QtGui.QMainWindow):
         main_frame = QWidget()
         main_frame.setLayout(vbox)
         self.setCentralWidget(main_frame)
-
-        #self.setStyleSheet("QMainWindow{ background-image: url(logo2) }")
-        #self.setStyleSheet("QMainWindow{ background-color: 'gray10' }")
 
     #Call this function to center the window on user's screen
         self.center()
@@ -63,37 +70,51 @@ class Window(QtGui.QMainWindow):
         self.setToolTip('Thanks for using <b>PIXELS</b>!')
 
     #ADD IMAGES BUTTON
+        # Creates a button with the following specifications:
+        # Name:             AddImages
+        # Position:         150, 200 (px)
+        # Functinality:     when clicked opens Windows Explorer window
         addimgButton = QtGui.QPushButton("Add Images", self)
         addimgButton.resize(addimgButton.sizeHint())
         addimgButton.move(150, 200)
-        #grid.addWidget(addimgButton, 1,0)
         addimgButton.setToolTip('Click to add your images')
         addimgButton.clicked.connect(self.selectFile)
         vbox2.addWidget(addimgButton)
         addimgButton.resize(300,300)
 
     #EXIT BUTTON
+        # Creates a button with the following specifications:
+        # Name:             Exit
+        # Position:         150, 250 (px)
+        # Functinality:     when clicked calls Qt exit function
+        #                   to close the window
         exitButton = QtGui.QPushButton("Exit", self)
         exitButton.setToolTip('Click to <b>EXIT</b> PIXELS')
         exitButton.clicked.connect(QtCore.QCoreApplication.instance().quit)
         exitButton.resize(exitButton.sizeHint())
-        #grid.addWidget(exitButton, 0,1)
         exitButton.move(150,250)
-        vbox2.addWidget(exitButton)
+        vbox2.addWidget(exitButton) #add button to vbox2 layout
 
     #FRAME RATE
+        # Creates a button with the following specifications:
+        # Name:             Frame rate
+        # Position:         150, 300 (px)
+        # Functinality:     when clicked calls Qt dialog box function
+        #                   which ask the user to entera value. Stores
+        #                   that value in frateEdit box object
         self.frameRate = QtGui.QPushButton('Frame rate', self)
         self.frameRate.move(150,300)
         self.frameRate.clicked.connect(self.showDialog)     #dialogue box popup
         self.frameRate.setToolTip('Frame rate')
         vbox2.addWidget(self.frameRate)               #tooltip
 
+        #Creates a Qt box object to save user entered value
         self.frateEdit = QtGui.QLineEdit(self)
         self.frateEdit.move(150, 330)
         self.frateEdit.setToolTip('Enter frame rate')
         vbox2.addWidget(self.frateEdit)
 
-
+        #paint the Window created
         self.show()
 # ------------   END OF Window CLASS    ---------------------------------
 
