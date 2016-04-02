@@ -149,8 +149,5 @@ plt.plot(x, y)
 plt.xlabel("Position in Sequence")
 plt.ylabel("Pixels")
 plt.show()
-<<<<<<< HEAD
-"""
->>>>>>> 2f9721f89025c8a7d21efc7d03f6ada319fccb91
-=======
->>>>>>> c50b02fa599e553b18dd419ba100a06fdb77369a
+
+
