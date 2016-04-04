@@ -79,8 +79,8 @@ for i in range(len(binary_images)):
 
 os.chdir('..')
 os.chdir('BinaryImages')
-<<<<<<< HEAD
-binaryImageNames = os.listdir()
+
+binaryImageNames = os.listdir(os.getcwd())
 #print(binaryImageNames)
 
 import glob, os
@@ -109,7 +109,7 @@ for infile in glob.glob("*.jpg"):
 #
 #         else:
 #             print ("Non B/W Pixel detected!!")
-=======
+
 binaryImageNames = os.listdir(os.getcwd())
 
 for i in range(len(binaryImageNames)):
