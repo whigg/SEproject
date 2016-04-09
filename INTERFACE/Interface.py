@@ -21,7 +21,7 @@ class ImageLabel(QLabel):
         self.setPixmap(image)
 
     def mousePressEvent(self, event):
-        print 'I was pressed'
+        print ('I was pressed')
 
 # This class handles the main Window of the program.
 # Window contains buttons, tooltips, logo, and each
@@ -164,7 +164,7 @@ class Window(QtGui.QMainWindow):
 
     def changebackground(self):
         fname = QtGui.QFileDialog.getOpenFileName(self, 'Select background image', 'C:/Users/Kem/Documents/GitHub/SoftwareEngineering')
-        print fname
+        print (fname)
         self.results.setStyleSheet("background-image: url(" + fname + "); background-repeat: no-repeat; background-position: center;")
 
 def run():

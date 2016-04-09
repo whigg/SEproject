@@ -22,6 +22,7 @@ from PIL import Image
 import os
 import matplotlib.pyplot as plt
 import numpy as np
+import glob
 
 #name for folder in which all resulting binary images will be saved.
 result_folder = 'BinaryImages'
@@ -56,7 +57,7 @@ for i in range(len(filenames)):
 
     #convert to pure black and white (next two lines)
     image_file = image_file.convert('L')
-    image_file= image_file.point(lambda x: 0 if x<128 else 255, '1')
+    image_file = image_file.point(lambda x: 0 if x < 128 else 255, '1')
 
     #adding new binary image to binary_images list
     binary_images.append(image_file)
@@ -73,6 +74,7 @@ os.chdir(result_folder)
 
 #save all binary images in the result_folder
 for i in range(len(binary_images)):
+    
     image_file = binary_images[i]
     #image_file.save('result' + str(i) + '.png')
     image_file.save(filenames[i] + 'BINARY.png')
@@ -82,8 +84,6 @@ os.chdir('BinaryImages')
 
 binaryImageNames = os.listdir(os.getcwd())
 #print(binaryImageNames)
-
-import glob, os
 
 size = 128, 128
 
