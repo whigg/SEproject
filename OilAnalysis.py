@@ -78,6 +78,7 @@ for i in range(len(binaryImageNames)):
     print(binaryImageNames[i])
 
     PixList = im.getcolors()
+    #print(PixList)
 
     for pixel in PixList:
 
@@ -92,7 +93,10 @@ for i in range(len(binaryImageNames)):
         else:
             print ("Non B/W Pixel detected!!")
 
-    imageData.append((binaryImageNames[i], Bpixels, Wpixels))
+    #imageData.append((binaryImageNames[i], Bpixels, Wpixels))
+    #print('\n'.join(imageData))
+    
+    
 ###  At this point, imageData contains information about all images in the
 ###  specified images file. Now comes the graph construction.
 
