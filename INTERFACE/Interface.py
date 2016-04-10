@@ -23,9 +23,13 @@ class ImageLabel(QLabel):
 
     #This function handles what happens when the image logo clicked
     def mousePressEvent(self, event):
+<<<<<<< HEAD
         #print 'I was pressed'
         #Opens the HElP/DOCUMENTATION file
         os.startfile("C:\Users\Kem\Documents\GitHub\SEproject\documentation.docx")
+=======
+        print ('I was pressed')
+>>>>>>> 7433712597c959a53d8c2e5ae4af89cc9195e50d
 
 # This class handles the main Window of the program.
 # Window contains buttons, tooltips, logo, and each
@@ -171,7 +175,7 @@ class Window(QtGui.QMainWindow):
 
     def changebackground(self):
         fname = QtGui.QFileDialog.getOpenFileName(self, 'Select background image', 'C:/Users/Kem/Documents/GitHub/SoftwareEngineering')
-        print fname
+        print (fname)
         self.results.setStyleSheet("background-image: url(" + fname + "); background-repeat: no-repeat; background-position: center;")
 
 #RUN THE PROGRAM
