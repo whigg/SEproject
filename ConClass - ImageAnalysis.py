@@ -76,6 +76,12 @@ class IAController:
                     print ("Non B/W Pixel detected!!")
                     
         os.chdir('..')                                              #backing out of binDataDir
+    
+    def AutoThreshold(self):
+        return 0
+        
+    def Stitcher(self):
+        return 0        
                
 #End IAController #############################################################
         
@@ -86,8 +92,8 @@ class IAController:
 experiment = IAController()
 experiment.ImageConverter()
 experiment.PixelCounter()
-
-
+experiment.AutoThreshold()
+experiment.Stitcher()
 
 
 
