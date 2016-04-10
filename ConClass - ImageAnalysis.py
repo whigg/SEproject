@@ -1,5 +1,5 @@
 ###############################################
 # Name: Taylor Murphy
-#Oil Analysis Controller Class
+#Image Analysis Controller Class
 ###############################################
 #
