@@ -12,6 +12,7 @@ import sys
 from PyQt4 import QtGui, QtCore
 from PyQt4.QtCore import *
 from PyQt4.QtGui import *
+import os
 
 
 # This class handles the logo object and functionality
@@ -20,8 +21,11 @@ class ImageLabel(QLabel):
         super(ImageLabel, self).__init__(parent)
         self.setPixmap(image)
 
+    #This function handles what happens when the image logo clicked
     def mousePressEvent(self, event):
-        print 'I was pressed'
+        #print 'I was pressed'
+        #Opens the HElP/DOCUMENTATION file
+        os.startfile("C:\Users\Kem\Documents\GitHub\SEproject\documentation.docx")
 
 # This class handles the main Window of the program.
 # Window contains buttons, tooltips, logo, and each
@@ -30,19 +34,21 @@ class Window(QtGui.QMainWindow):
 
     def __init__(self):
         super(Window,self).__init__() #call init from the base class
-        self.home()
-
-    def home(self):
+# MAIN WINDOW TEMPLATE:
         # Creates a window with the following specifications:
         # Geometry/size:  600x600 PIXELS
         # Title:          PIXELS
-        # Icon:           sets icon in image folder
+        # Icon:           sets image icon contained in image folder
         self.setGeometry(0,0,600,600)
         self.setWindowTitle("P I X E L S")
         self.setWindowIcon(QtGui.QIcon('icon'))
+        self.home()
+
+    def home(self):
 
         # Create a Qt label object with image file
         img_label = ImageLabel(QPixmap('logo.png'))
+        img_label.setToolTip("<b> Click Here For HELP!</b>")
 
         # Create Qt box objects
         # box objects allows you to set different layouts by
@@ -63,6 +69,7 @@ class Window(QtGui.QMainWindow):
 
     #Status Bar
         self.statusBar().showMessage('Ready')
+        self.statusBar().setToolTip("Program status")
 
     #TOOLTIP
         #This is a tooltip
@@ -105,7 +112,7 @@ class Window(QtGui.QMainWindow):
         self.frameRate = QtGui.QPushButton('Frame rate', self)
         self.frameRate.move(150,300)
         self.frameRate.clicked.connect(self.showDialog)     #dialogue box popup
-        self.frameRate.setToolTip('Frame rate')
+        self.frameRate.setToolTip('Click to enter Frame rate')
         vbox2.addWidget(self.frameRate)               #tooltip
 
         #Creates a Qt box object to save user entered value
@@ -155,7 +162,7 @@ class Window(QtGui.QMainWindow):
     #Opensfile explorer
     def selectFile(self):
         #lineEdit.setText(QFileDialog.getOpenFileName())
-        openfile = QtGui.QFileDialog.getOpenFileName(self) # Filename line
+        openfile = QtGui.QFileDialog.getOpenFileName(self, 'Open File') # Filename line
         f = open(openfile, 'r') # New line
         data = f.read() # New line
 
@@ -167,6 +174,7 @@ class Window(QtGui.QMainWindow):
         print fname
         self.results.setStyleSheet("background-image: url(" + fname + "); background-repeat: no-repeat; background-position: center;")
 
+#RUN THE PROGRAM
 def run():
     app = QtGui.QApplication(sys.argv)
     GUI = Window()
