@@ -23,13 +23,14 @@ class ImageLabel(QLabel):
 
     #This function handles what happens when the image logo clicked
     def mousePressEvent(self, event):
-<<<<<<< HEAD
         #print 'I was pressed'
-        #Opens the HElP/DOCUMENTATION file
-        os.startfile("C:\Users\Kem\Documents\GitHub\SEproject\documentation.docx")
-=======
         print ('I was pressed')
->>>>>>> 7433712597c959a53d8c2e5ae4af89cc9195e50d
+
+        #Opens the HELP/DOCUMENTATION file
+        os.startfile("C:\Users\Kem\Documents\GitHub\SEproject\documentation.docx")
+
+
+# ------------   END OF ImageLabel CLASS    ---------------------------------
 
 # This class handles the main Window of the program.
 # Window contains buttons, tooltips, logo, and each
@@ -43,7 +44,7 @@ class Window(QtGui.QMainWindow):
         # Geometry/size:  600x600 PIXELS
         # Title:          PIXELS
         # Icon:           sets image icon contained in image folder
-        self.setGeometry(0,0,600,600)
+        self.setGeometry(0,0,150,300)
         self.setWindowTitle("P I X E L S")
         self.setWindowIcon(QtGui.QIcon('icon'))
         self.home()
@@ -53,13 +54,15 @@ class Window(QtGui.QMainWindow):
         # Create a Qt label object with image file
         img_label = ImageLabel(QPixmap('logo.png'))
         img_label.setToolTip("<b> Click Here For HELP!</b>")
+        DescripLabel = QtGui.QLabel("Welcome to PIXELS If you need any help click on the image logo")
 
         # Create Qt box objects
         # box objects allows you to set different layouts by
         # saving objects in boxes and setting boxes in different
-        # positions
+        # positions within the window
         vbox = QHBoxLayout()
         vbox.addWidget(img_label)
+        #vbox.addWidget(DescripLabel)
 
         vbox2 = QVBoxLayout()
         vbox.addLayout(vbox2)
@@ -91,7 +94,7 @@ class Window(QtGui.QMainWindow):
         addimgButton.setToolTip('Click to add your images')
         addimgButton.clicked.connect(self.selectFile)
         vbox2.addWidget(addimgButton)
-        addimgButton.resize(300,300)
+        #addimgButton.resize(300,300)
 
     #EXIT BUTTON
         # Creates a button with the following specifications:
@@ -153,7 +156,7 @@ class Window(QtGui.QMainWindow):
         self.move(qr.topLeft())
 
 #FRAMERATE DIALOG BOX POPUP
-    #Has the user enter the framerate of the pictures to be processed
+    #Have the user enter the framerate of the pictures to be processed
     def showDialog(self):
 
         text, ok = QtGui.QInputDialog.getText(self, 'Input Framerate',
@@ -170,13 +173,18 @@ class Window(QtGui.QMainWindow):
         f = open(openfile, 'r') # New line
         data = f.read() # New line
 
+        ########INSERT Code to read images and process data OR call to a function#######
+        ### 1. create new window pop-up with progress bar
+        ### 2. save data to folder
+        ### 3. message to user
+
     def slotFile(self):
         filename=QFileDialog.getOpenFileName("", "*.py", self, "FileDialog")
 
     def changebackground(self):
-        fname = QtGui.QFileDialog.getOpenFileName(self, 'Select background image', 'C:/Users/Kem/Documents/GitHub/SoftwareEngineering')
+        fname = QtGui.QFileDialog.getOpenFileName(self, 'Select background image', 'C:/Users/Kem/Documents/GitHub/SoftwareEngineering/logo')
         print (fname)
-        self.results.setStyleSheet("background-image: url(" + fname + "); background-repeat: no-repeat; background-position: center;")
+        self.setStyleSheet("background-image: url(" + fname + "); background-repeat: no-repeat; background-position: center;")
 
 #RUN THE PROGRAM
 def run():
