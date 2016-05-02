@@ -27,7 +27,7 @@ class ImageLabel(QLabel):
         print ('I was pressed')
 
         #Opens the HELP/DOCUMENTATION file
-        os.startfile("C:\Users\Kem\Documents\GitHub\SEproject\documentation.docx")
+        os.startfile("documentation.docx")
 
 
 # ------------   END OF ImageLabel CLASS    ---------------------------------
