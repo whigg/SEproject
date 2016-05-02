@@ -46,7 +46,7 @@ while(fail!= True):
     for i in range(0,c):
         #print('.....')
         #print(i)
-        for j in range(0,550):
+        for j in range(0,rows):
             #print('AAAA')
             if(pixels1[cols-i, j] != pixels2[i,j]):
                 if (c<cols-1):
