@@ -22,8 +22,8 @@ img2 = Image.open(filenames[1])
 pixels1 = img1.load() #ceating a pixel map for first Image
 pixels2 = img2.load() #creating a pixel map for second Image
 
-print(img2.size[1]) #rows
-print(img2.size[0]) #columns
+print(img1.size[1]) #rows
+print(img1.size[0]) #columns
 
 rows = img1.size[1]
 img1cols = img1.size[0]
@@ -33,46 +33,28 @@ img2cols = img2.size[0]
 
 #pixel[col, row]
 
-count = 0
-
 if(img1cols > img2cols):
     cols = img2cols #use the image with the least number of columns for indexing
         #this shouldnt be an issue if all of the images are of the same size
 else:
     cols = img1cols #catch case in case the images are of the same size
 
-match = True
-found = False
+#print(rows)
+c=1
+fail = False
+while(fail!= True):
+    for i in range(0,c):
+        #print('.....')
+        #print(i)
+        for j in range(0,550):
+            #print('AAAA')
+            if(pixels1[cols-i, j] != pixels2[i,j]):
+                if (c<cols-1):
+                    print(j)
+                    c+=1
+                    break
+                else:
+                    fail = True
+                    break
 
-while(match!=True):
-    for j in range(0, cols): #columns
-        for i in range(0, rows): #rows
-            if (pixels1[(img1cols-1) -j, i] != pixels2[j, i]):
-                match = False
-                break
-        if (match!= True):
-            break
-
-
-print(count)
-
-
-
-
-
-"""
-for i in range(img.size[0]): #for every pixel:
-    for j in range (img.size[1]):
-"""
-"""
-
-
-img = Image.new( 'RGB', (255,255), "black") # create a new black image
-pixels = img.load() # create the pixel map
-
-for i in range(img.size[0]):    # for every pixel:
-    for j in range(img.size[1]):
-        pixels[i,j] = (i, j, 100) # set the colour accordingly
-
-img.show()
-"""
+print(fail)
