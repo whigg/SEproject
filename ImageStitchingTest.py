@@ -41,16 +41,17 @@ else:
 
 #print(rows)
 c=1
+print(rows)
 fail = False
 while(fail!= True):
     for i in range(0,c):
         #print('.....')
         #print(i)
         for j in range(0,rows):
-            #print('AAAA')
+            #print(j)
             if(pixels1[cols-i, j] != pixels2[i,j]):
                 if (c<cols-1):
-                    print(j)
+                    #print(j)
                     c+=1
                     break
                 else:
