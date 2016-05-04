@@ -48,7 +48,7 @@ while(hardFail!= True):
 	iterFail = False
 	for i in range(0,c):
 
-		for j in range(0,rows):
+		for j in range(0,(rows-1)):
 			if(pixels1[((cols-1)-c+i), j] != pixels2[i,j]): #if the pixels are not equal,
 				iterFail = True 			#the iteration fails
 				if (i<(cols-1)):			#if you have not yet exhausted the number of columns,
