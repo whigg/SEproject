@@ -64,3 +64,7 @@ while(hardFail!= True):
 		if (iterFail == True):
 			break
 print(hardFail)
+"""
+#cropping the overlap out of the first part of the second image
+img2.crop(0, 0, SPAN, rows-1)
+"""
